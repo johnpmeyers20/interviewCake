@@ -1,3 +1,5 @@
+/////// First Attempt ///////
+
 function hasPalindromePermutation(theString) {
 
   // Check if any permutation of the input is a palindrome
@@ -20,3 +22,16 @@ function hasPalindromePermutation(theString) {
   console.log('singles', singles);
   return singles > 1 ? false : true;
 }
+
+///// END First Attempt /////
+
+/////// Second Attempt ///////
+function hasPalindromePermutation(theString) {
+  let unpairedChars = new Set();
+  for (let letter of theString) {
+    unpairedChars.has(letter) ? unpairedChars.delete(letter) : unpairedChars.add(letter);
+  }  
+  return unpairedChars.size <= 1;
+}
+
+///// END Second Attempt /////
