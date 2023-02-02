@@ -1,5 +1,45 @@
 /////// Second Attempt ///////
 
+class WordCloudData {
+  constructor(inputString) {
+    this.wordsToCounts = new Map();
+    this.populateWordsToCounts(inputString);
+  }
+
+  populateWordsToCounts(inputString) {
+    const alphabet = new Set('abcdefghijklmnopqrstuvwxyz\'-'.split(''))
+    // console.log('alphabet', alphabet);
+    // let arrOfWords = inputString.split(' ');
+    // console.log('arrOfWords', arrOfWords)
+    let mapOfWords = new Map();
+    let currWord = '';
+    for (let i = 0; i < inputString.length; i++) {
+      const lowerCaseChar = inputString[i].toLowerCase();
+      if (alphabet.has(lowerCaseChar)) {
+        currWord += lowerCaseChar;
+      }
+      
+      if (i === inputString.length - 1 || !alphabet.has(lowerCaseChar)) {
+        if (currWord.length === 0) continue;
+        const hasCurrWord = mapOfWords.has(currWord);
+        if (hasCurrWord) {
+          let currWordCount = 0;
+          currWordCount = mapOfWords.get(currWord);
+          mapOfWords.set(currWord, currWordCount + 1);
+          currWord = '';
+        }
+        else {
+          mapOfWords.set(currWord, 1);
+          currWord = '';
+        }
+      }
+
+    }
+    console.log('mapOfWords', mapOfWords);
+    return mapOfWords;
+  }
+
+}
 
 
 ///// END Second Attempt /////
