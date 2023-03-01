@@ -19,7 +19,16 @@ function isFirstComeFirstServed(takeOutOrders, dineInOrders, servedOrders) {
       return false;
     }
   }
-  
+  // Below confused me for a minute, because I didn't understand why we're referencing the 
+  // input array's length and not the takeOutOrdersMaxIndex etc that we set up. It is because
+  // take for example the last item. One of the input arrays will have been exhausted.
+  // When the condition of the if statement passes the command will increment takeOutOrderIndex again
+  // At this point the value of takeOutOrders[takeOutOrderIndex] would be undefined. But we're no longer
+  // checking it, and we already check to make sure that it's <= takeOutOrdersMaxIndex. if it cycles
+  // again.
+
+  // Long story short, by the end, the inputIndex arguments' values will both equal the length of the
+  // given input array (if all goes according to plan);
   if (takeOutOrdersIndex != takeOutOrders.length || dineInOrdersIndex != dineInOrders.length) {
     return false;
   }
